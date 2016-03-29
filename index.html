@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>QE プレゼンテーション</title>
-<!-- 2016-03-11 金 10:01 -->
+<!-- 2016-03-30 水 06:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <style type="text/css">
@@ -629,760 +629,84 @@ pure applications.
 </div>
 
 <div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> ICAPS14 paper</h2>
+<h2 id="sec-7"><span class="section-number-2">7</span> Q. Whats the difference between Deep Learning?</h2>
 <div class="outline-text-2" id="text-7">
-<div class="resume">
 <p>
-Next I'd like to provide a bit more details of my recent work, only briefly.
+A. Possible, but <b>different layer</b>
 </p>
 
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span7">
 <p>
-In this work, we proposed an automated method for solving large repetitive problems
-which are easy for human but difficult for programs.
-It detects a certain kinds of loops based only from the logical relationships between facts and actions.
+<b>Deep Learning</b>, <b>Machine Learning</b>
 </p>
+<ul class="org-ul">
+<li><b>Subsymbolic Input</b>
+<ul class="org-ul">
+<li>images, voice, random text&#x2026;
+</li>
+</ul>
+</li>
+<li><b>1-step Action Policy / Reflex agent</b>
+<ul class="org-ul">
+<li>Pablov's dog, self-driving cars
+</li>
+<li>red light → stop.
+</li>
+<li>Pedestrian → stop.
+</li>
+<li>Curves → brake.
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<div class="span5">
+<p>
+<b>Planning</b>
+</p>
+<ul class="org-ul">
+<li><b>Symbolic Input/Output</b>
+<ul class="org-ul">
+<li>logic, objects, rules
+</li>
+</ul>
+</li>
+<li><b>Reasoning about 1000 step future</b>
+<ul class="org-ul">
+<li>Rescue Robots solve puzzles under complex environment
+</li>
+</ul>
+</li>
+</ul>
 
 </div>
 
+</div>
 
-<div class="figure">
-<p><img src="img/assemble-icaps14.png" alt="assemble-icaps14.png" />
-</p>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> KEPS14, ICAPS15 paper</h2>
+<h2 id="sec-8"><span class="section-number-2">8</span> Reflex Agent vs Goal-based Agents</h2>
 <div class="outline-text-2" id="text-8">
-<div class="resume">
-<p>
-In this work, we generalized the proposed method by detecting and
-categorizing the logical structure which forms each loop.
-For example, programs do not know that cars consists of several parts such as doors, engines and tires.
-</p>
-
-</div>
-
 
 <div class="figure">
-<p><img src="img/assemble-keps14-icaps15.png" alt="assemble-keps14-icaps15.png" />
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> AAAI16 paper</h2>
-<div class="outline-text-2" id="text-9">
-<div class="resume">
-<p>
-Finally, this work proposed a method which prevents programs being confused by the zero-cost actions.
-Actions in planning problems usually have a cost, measured by some criteria such as time, fuel or effort.
-Programs tend to minimize the cost of the result plan, 
-however, they are confused when there are many zero-cost actions.
-For example, imagine Amazon is trying to optimize their truck operations.
-Automated planning can also be applied to such a purpose.
-When they only concerns with the fuel consumption,
-some actions are zero-cost, like, the amount of labor on each driver is ignored.
-</p>
-
-</div>
-
-
-<div class="figure">
-<p><img src="img/aaai16.png" alt="aaai16.png" />
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> <b>IHS</b> に参加した動機と達成度は?</h2>
-<div class="outline-text-2" id="text-10">
-<ul class="org-ul">
-<li>将来の研究、製品、起業に関するアイディアを得る <b>達成</b> 
-<ul class="org-ul">
-<li>IHS参加によって得たアイディアから1st-tier 査読付き国際学会論文が採択
-</li>
-</ul>
-</li>
-<li>他分野との交流 <b>???</b>
-<ul class="org-ul">
-<li>人文科学特有の考え方? を知った
-</li>
-<li>社会科学の知識は大いに使えそうだ
-</li>
-</ul>
-</li>
-<li>国際的活動についての知識と感覚を身につける <b>達成</b>
-<ul class="org-ul">
-<li>将来のキャリアパスのため。
-</li>
-<li>自国を見つめなおすことで得られる国際感覚があった
-</li>
-</ul>
-</li>
-</ul>
-</div>
-
-<div id="outline-container-sec-10-1" class="outline-3">
-<h3 id="sec-10-1"><span class="section-number-3">10.1</span> 将来の研究、製品、起業に関するアイディアを得る</h3>
-<div class="outline-text-3" id="text-10-1">
-<div class="center">
-<p>
-State-of-the-Art 探索アルゴリズム A* (Hart, Nilsson, Raphael <b>1968</b>) に
-</p>
-
-<p>
-<i>Diversity</i> の概念を導入し、 大幅な高速化を達成した。
-</p>
-
-<p>
-1st-tier 国際学会論文に採択 (Asai and Fukunaga, 2016)
-</p>
-</div>
-
-<dl class="org-dl">
-<dt> A<sup>＊</sup> の動作(概略) </dt><dd>プランニング問題の解 (課題解決) を探すために様々な「選択肢」をランク付けする。
-
-<p>
-ランクの小さい順に選択肢の正しさを検討する。
-</p>
-</dd>
-<dt> ランク付 </dt><dd>選択肢ごとに 「評価値」と呼ばれる数値を計算し、その値が小さい順に並べること。
-</dd>
-</dl>
-
-<p>
-<i>研究背景と結論:</i>
-</p>
-
-<ul class="org-ul">
-<li>1970年に提唱されて以来、
-２つ以上の選択肢が「同じ評価値」になった時にどう並べるかは
-<b>「さして重要ではない」</b> と考えられてきた。
-
-<div class="alignright">
-<p>
-→だれも注意を払わず、不適切な並べ方をしていた。
-</p>
-
-</div>
-</li>
-
-<li><b>同じ評価値を持つ選択肢について、毎回なるべく「似ていない」選択肢を選ぶ</b> 
-  (探索アルゴリズムへのDiversityの導入) ことで、 大幅に探索が高速化されることを示した。
-</li>
-</ul>
-
-<div class="larger">
-<div class="alignright">
-<p>
-Diversity の発想は IHS での体験から着想を得たもの。
-</p>
-
-</div>
-
-</div>
-
-<div class="note">
-<p>
-Asai, M.; Fukunaga, A: 2016. Tiebreaking Strategies for A* Search: How to Explore the Final Frontier. In Proceedings of the 30th AAAI conference on Artificial Intelligence. Phoenix, Arizona USA.
-</p>
-
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-10-2" class="outline-3">
-<h3 id="sec-10-2"><span class="section-number-3">10.2</span> 他分野との交流 (小学生並みの感想)</h3>
-<div class="outline-text-3" id="text-10-2">
-<p>
-課題: Diversity → AI の貢献(帰納)は出来たが、 AI→Diversity の貢献(応用)はまだできてない
-</p>
-
-<ul class="org-ul">
-<li>バーチャル遊就館構想
-<ul class="org-ul">
-<li>いいアイディアだったが…
-</li>
-</ul>
-</li>
-<li>社会科学に対する理解が大いに深まった (Anna 先生)
-<ul class="org-ul">
-<li>ジャマイカの国際関係に関するプレゼンを行った
-</li>
-<li>AlphaGoが人類史上最強の棋士に連勝(今日は中休み) → 敵対ゲーム
-<ul class="org-ul">
-<li>協調ゲームに対しても同様の進歩が見られるだろうという予測はたつ
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-<p>
-実世界への応用(=マニー)のため、さらなる知見が必要だ!
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-10-3" class="outline-3">
-<h3 id="sec-10-3"><span class="section-number-3">10.3</span> 他分野との交流2 (小学生並みの感想)</h3>
-<div class="outline-text-3" id="text-10-3">
-<ul class="org-ul">
-<li>一部の人文系とはやはり相容れないことがわかった
-<ul class="org-ul">
-<li>「読んで5分で理解できるようなものに何の価値があるの?」とある教授に言われた
-</li>
-<li>論理の泥団子 = 特定の議論の対象に特殊化した多くの前提から成り立っている
-</li>
-<li>→ 一般化出来ない、応用の効かない <b>重要度の低い理論</b>
-</li>
-<li>人工知能分野では「Utility Problem」と呼ばれる
-</li>
-</ul>
-</li>
-<li>人による
-<ul class="org-ul">
-<li>「文系」学部撤廃の危機を唱える先生が居た ← 興味深い
-</li>
-<li><b>人工知能</b> は実際の性能を越えた <b>過度な期待</b> が集まって何度も <b>大絶滅</b> (<i>AIの冬</i>)
-</li>
-<li>← 正しく実用性をアピールし続けることは重要。資金は降ってこない
-</li>
-</ul>
-</li>
-</ul>
-
-<div class="note">
-<p>
-知り合いに車好きのジャマイカ人が居る
-</p>
-
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-10-4" class="outline-3">
-<h3 id="sec-10-4"><span class="section-number-3">10.4</span> 国際的活動についての知識と感覚を身につける</h3>
-<div class="outline-text-3" id="text-10-4">
-<ul class="org-ul">
-<li>将来の仕事のため。 IBM, Microsoft, Google, Boeing, iRobot, GE, &#x2026;
-</li>
-<li>仕事の大一番や日常のコミュニケーションなどで日本人特有の間違いをしないために、訓練をしておく必要があった。 (先月行ったアリゾナでは役に立った)
-</li>
-<li>自国の政治に対する意見を求められた時に、すぐさま答えられるようにしておく。
-</li>
-</ul>
-
-<p>
-<b>該当する授業</b>
-</p>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="left">タイトル</th>
-<th scope="col" class="left">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="left">プロジェクト5</td>
-<td class="left">精華大・プリンストン大生セミナー</td>
-</tr>
-
-<tr>
-<td class="left">統合人間学実験実習Ⅴ</td>
-<td class="left">靖国問題講義、遊就館訪問</td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left">討論会</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="left">EMP講義</td>
-<td class="left">国際ビジネスで活躍している人間の</td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left">考え方、普段からの心がけ、</td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left">処世術、常識を観察し学び取る。</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> 外国語習熟度</h2>
-<div class="outline-text-2" id="text-11">
-<ul class="org-ul">
-<li>フランス語 &#x2014; 5月の試験の申し込みが始まっているので今度申し込む
-</li>
-<li>アジアの外国語 &#x2014; もっと後で
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> 今後</h2>
-<div class="outline-text-2" id="text-12">
-<p>
-<b>学振DC2 採択</b> &#x2013; IHSの研究奨励金はキャンセル
-</p>
-
-<p>
-<b>語学</b> &#x2013; IHSの単位は取れましたので、 8月までは余裕があるはず。
-</p>
-
-<p>
-<b>インターンシップ</b> &#x2013; IBM の最終面接までは行ってるが・・・?
-</p>
-
-<p>
-１つのことに集中するのが得意 (Context Switch がニガテ) なので頑張ります。
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> (怒･∀･)</h2>
-<div class="outline-text-2" id="text-13">
-<ul class="org-ul">
-<li>(怒･∀･)  &lt; サボってるんじゃないの??
-</li>
-<li>(怒･∀･)  &lt; テメー冬学期一個も授業取らなかったな!!
-</li>
-<li>(怒･∀･)  &lt; 直前にアメリカに居るってどういうことだ!!!
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14"><span class="section-number-2">14</span> この一年間の活動のまとめ (5-7月)</h2>
-<div class="outline-text-2" id="text-14">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="left">時期</th>
-<th scope="col" class="left">活動</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="left">夏学期</td>
-<td class="left">IHSの授業 (-7月後半)</td>
-</tr>
-
-<tr>
-<td class="left">6/7-11</td>
-<td class="left">ICAPS15 査読付き国際学会論文発表 @ エルサレム, イスラエル (自費)</td>
-</tr>
-</tbody>
-</table>
-
-
-
-<dl class="org-dl">
-<dt> 計算機科学は、 <i>査読付き</i> 国際学会論文が需要な研究業績 </dt><dd>     旅客機の一般化した1950年代以降に発展した分野だから。
-
-<p>
-査読の質は全体として論文誌と同様 (でも論文誌も重要)
-</p>
-</dd>
-
-<dt> Publish or Perish. </dt><dd>     研究業績がないと一般企業への就職も出来ない(CVに業績リストは当然)
-
-<p>
-一流査読付き国際会議にコンスタントに論文を出し続けないと人生が終わる。
-</p>
-
-<p>
-査読の厳しさによって国際学会には「格」がある
-</p>
-
-<p>
-1st-tier (最も厳しい), 2nd-tier&#x2026; と続き、その果てに junk conference(査読なし) がある
-</p>
-
-<p>
-日本は <a href="http://hymkw.com/ja/">junkを業績リストに出して平気なAI研究者</a> が 「人工知能学会理事」
-</p>
-
-<p>
-「ドワンゴ人工知能研究所所長」みたいなポストに付けるので正直 <b>終わってる</b>
-</p>
-</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-sec-15" class="outline-2">
-<h2 id="sec-15"><span class="section-number-2">15</span> この一年間の活動のまとめ (8-9月)</h2>
-<div class="outline-text-2" id="text-15">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="left">時期</th>
-<th scope="col" class="left">活動</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="left">冬学期</td>
-<td class="left">研究室内ゼミ以外の授業は履修せず (M1,M2の時も同様)</td>
-</tr>
-
-<tr>
-<td class="left">8月-9月</td>
-<td class="left">AAAI16のプログラム開発・試行錯誤・実験・執筆</td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left">(自宅リモート勤務24時間、指導教授とはskypeチャット)</td>
-</tr>
-
-<tr>
-<td class="left">9/15</td>
-<td class="left">AAAI16 <b>Paper Submission Deadline</b></td>
-</tr>
-</tbody>
-</table>
-
-<p>
-　
-</p>
-
-<p>
-<b>研究のスケジュール</b>
-</p>
-
-<ul class="org-ul">
-<li>アイディアの着想、検討、実装には最短でも一ヶ月かかる
-
-<div class="alignright">
-<p>
-(自分はプログラマとして実力があるので上記スケジュールでギリギリ間に合う)
-</p>
-
-</div>
-</li>
-<li>論文の執筆にはまるまる1ヶ月かかる。 Top-Tier に通すには
-<div class="alignright">
-<p>
-<b>わかりやすさ</b> 、 <b>正しさ</b> 、 <b>発見の重要性</b> の全てが揃わなくてはならない。
-</p>
-
-</div>
-</li>
-<li>ストーリーを練るにつれ、 必要な実験と必要でない実験が炙りだされていく
-
-<div class="alignright">
-<p>
-==同時並行で追加実験・追加実装を行う。
-</p>
-
-</div>
-</li>
-<li>二ヶ月毎に新たなウェブサービスを立ち上げるのと同じようなもの!
-
-<div class="alignright">
-<p>
-機械の力を駆使して同時並行に多数のことを実行
-</p>
-
-</div>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-16" class="outline-2">
-<h2 id="sec-16"><span class="section-number-2">16</span> この一年間の活動のまとめ (9月-)</h2>
-<div class="outline-text-2" id="text-16">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="left">9/15</td>
-<td class="left">AAAI16 Paper Submission Deadline</td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left">AAAI16 Rebuttal にむけ予備実験</td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left"><span class="underline">ICAPS16 にむけプログラム開発・試行錯誤・実験・執筆</span></td>
-</tr>
-
-<tr>
-<td class="left"><b>10/21-24</b></td>
-<td class="left">AAAI16 <b>Rebuttal Period (査読者への反論)</b></td>
-</tr>
-
-<tr>
-<td class="left">10月-11月</td>
-<td class="left"><span class="underline">ICAPS16 にむけプログラム開発・試行錯誤・実験・執筆</span></td>
-</tr>
-
-<tr>
-<td class="left"><b>11/13</b></td>
-<td class="left">AAAI16 <b>Notification</b> (+ 査読者から追加コメント)</td>
-</tr>
-
-<tr>
-<td class="left"><b>11/22</b></td>
-<td class="left">ICAPS16 <b>Paper Submission Deadline</b></td>
-</tr>
-</tbody>
-</table>
-
-
-<dl class="org-dl">
-<dt> 反論 </dt><dd>500語制限に3ページ以上ある査読に対する適切な対応を詰め込む「箱詰めパズル」
-</dd>
-<dt> 採択通知と「次の学会」の締め切り </dt><dd>通知(Notification) と「次の」学会のDeadlineが時期的に繋がるようになっている
-
-<p>
-落ちたら次のに出せる → 実質 4-5回査読のある論文誌と査読の質は変わらない
-</p>
-
-<div class="alignright">
-<p>
-今回はAAAI16 が通った→ICAPS16 には、 <span class="underline">準備していた全く別の内容</span> を出した
-</p>
-
-</div>
-</dd>
-</dl>
-
-<div class="note">
-<p>
-accept with minor revision
-</p>
-
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-17" class="outline-2">
-<h2 id="sec-17"><span class="section-number-2">17</span> この一年間の活動のまとめ (11月-)</h2>
-<div class="outline-text-2" id="text-17">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="left"><b>11/13</b></td>
-<td class="left">AAAI16 <b>Notification</b> (+ 査読者から追加コメント)</td>
-</tr>
-
-<tr>
-<td class="left"><b>11/22</b></td>
-<td class="left">ICAPS16 <b>Paper Submission Deadline</b></td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left">AAAI16 追加コメントに対応すべく追加実験</td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left">DC2 口頭面接に備えて準備</td>
-</tr>
-
-<tr>
-<td class="left">12/1</td>
-<td class="left">AAAI16 Camera-ready Deadline (最終版投稿)</td>
-</tr>
-
-<tr>
-<td class="left">&#xa0;</td>
-<td class="left">ICAPS16 Rebuttal にむけ追加実験</td>
-</tr>
-
-<tr>
-<td class="left">12/2</td>
-<td class="left">DC2 口頭面接</td>
-</tr>
-
-<tr>
-<td class="left">12月-1月</td>
-<td class="left">IJCAI16 にむけプログラム開発・試行錯誤・実験・執筆</td>
-</tr>
-
-<tr>
-<td class="left">12/25</td>
-<td class="left">DC2 採用通知</td>
-</tr>
-
-<tr>
-<td class="left">12/27</td>
-<td class="left">国際メンター</td>
-</tr>
-
-<tr>
-<td class="left"><b>1/8-11</b></td>
-<td class="left">ICAPS16 <b>Rebuttal Period</b></td>
-</tr>
-
-<tr>
-<td class="left"><b>1/26</b></td>
-<td class="left">ICAPS16 <b>Notification</b></td>
-</tr>
-
-<tr>
-<td class="left"><b>2/2</b></td>
-<td class="left">IJCAI16 <b>Paper Submission Deadline</b></td>
-</tr>
-</tbody>
-</table>
-
-<div class="center">
-<p>
-<b>AAAI, IJCAI : AI全体の1st tier</b> 　　 <b>ICAPS: プランニングの1st tier</b>
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-18" class="outline-2">
-<h2 id="sec-18"><span class="section-number-2">18</span> この一年間の活動のまとめ (2月-)</h2>
-<div class="outline-text-2" id="text-18">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="left">2/2</td>
-<td class="left">IJCAI16 Paper Submission Deadline</td>
-</tr>
-
-<tr>
-<td class="left">2/10</td>
-<td class="left">科研費応募締め切り</td>
-</tr>
-
-<tr>
-<td class="left"><b>2/11-20</b></td>
-<td class="left"><b>AAAI16 査読付き国際学会論文発表 @ Phoenix Arizona USA</b></td>
-</tr>
-
-<tr>
-<td class="left">2/19</td>
-<td class="left">ICAPS16 Doctorial Consortium Submission Deadline</td>
-</tr>
-
-<tr>
-<td class="left">3/4</td>
-<td class="left">HSDIP16 Workshop Paper Submission Deadline</td>
-</tr>
-
-<tr>
-<td class="left"><b>3/11-14</b></td>
-<td class="left">IJCAI16 <b>Rebuttal Period</b></td>
-</tr>
-
-<tr>
-<td class="left"><b>4/4</b></td>
-<td class="left">IJCAI16 <b>Notification</b></td>
-</tr>
-
-<tr>
-<td class="left"><b>4/7</b></td>
-<td class="left">SoCS16 <b>Paper Submission Deadline</b></td>
-</tr>
-
-<tr>
-<td class="left"><b>4/15</b></td>
-<td class="left">ECAI16 <b>Paper Submission Deadline</b></td>
-</tr>
-
-<tr>
-<td class="left">&#x2026;</td>
-<td class="left">&#x2026;</td>
-</tr>
-</tbody>
-</table>
-
-<div class="center">
-<p>
-ECAI: AI全体の 2nd tier 　　 SoCS: プランニングの 3rd/4th tier
+<p><img src="img/planning-deeplearning.png" alt="planning-deeplearning.png" />
 </p>
 </div>
 
 <p>
-結論: 計算機科学でまともに研究をしようと思ったら、冬学期に授業を取ることは不可能。
+AI's Ethics? &#x2014; subject to the "users"
 </p>
-
-<div class="alignright">
-<p>
-<b>昨日からIJCAI16のRebuttalが始まった</b> ので、追加実験のため104台のCPUがフル稼働中
-</p>
-
-</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2016-03-11 金 10:01</p>
+<p class="date">Created: 2016-03-30 水 06:43</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
