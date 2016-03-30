@@ -1,20 +1,23 @@
 
-convert=$(shell find ./ -name "*.$(1)" | sed -e s/$(1)/$(2)/g)
+.SECONDEXPANSION:
+
+.PRECIOUS: %.png
 
 .PHONY:	clean all
 
-all: $(call convert,svg,png) $(call convert,svg,xbb) $(call convert,png,xbb) .jpgxbb
+all: $(shell find -name "*.svg" -o -name "*.png" -o -name "*.jpg" | sed -e "s/\(png\|jpg\|svg\)/xbb/g")
 
-.jpgxbb: $(call convert,jpg,jpg)
-	ebb -x $(call convert,jpg,jpg)
-
-%.xbb: %.png
+%.xbb : %.jpg
 	ebb -x $<
 
-%.png: %.svg
+%.xbb : %.png
+	ebb -x $<
+
+%.png : %.svg
 	inkscape -f $< -e $*.png -d 150
 #	convert $< $*.png
 #	if you want to use imagemagick, comment out 'inkscape...' and use 'convert...'
 
 clean:
-	-rm -f $(call convert,svg,png) $(call convert,svg,xbb) $(call convert,png,xbb) $(call convert,jpg,xbb)
+	-find -name "*.xbb" -delete
+	-rm *.png
