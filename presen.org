@@ -44,19 +44,18 @@ give a brief introduction to my research field and what I do.
 
 Total 20分
 
-+ Lisp × {マクロ, ユーティリティ, Utility Problem} *5分*
++ Lisp × {マクロ, ユーティリティ, Utility Problem}
   + マクロとはどういう概念か?
   + Common Lisp のマクロ
   + Common Lisp のユーティリティ
   + Common Lisp の Utility Problem
   + Common Lisp での Utility Problem との闘いの歴史
-+ Backgrounds -- AI Topics *5分*
++ プランニング × {マクロ, ユーティリティ, Utility Problem}
   + 自動プランニングへのイントロダクション
   + 自動プランニングの技術
-+ プランニング × {マクロ, ユーティリティ, Utility Problem} *5分*
   + プランニングでのマクロ
   + プランニングでの Utility Problem
-+ マクロの学習 *5分*
++ マクロの学習
   + プランニングでの マクロの学習
   + Lisp マクロの学習?
   + Future Direction --- Utility Problem をどう解くのか?
@@ -932,19 +931,23 @@ EBL Explanation-Based Learning --- 「使えるマクロ」を訓練問題から
 
 名前でソートして再実装を見つける
 
-swank-xref で何回参照されているかを調べる
+時間的都合で出来なかった:
+
+✘ swank-xref で何回参照されているかを調べる
+
+✘ Lisp のマクロを学習できるか?
 
 * 名前でソートして再実装を見つける
 
 #+BEGIN_SRC lisp
 (ql:quickload '(:iterate :eazy-gnuplot))
-(use-package :eazy-gnuplot)
+(use-package '(:iterate :eazy-gnuplot))
 (defparameter *all-symbols*
   (let (acc)
     (do-all-symbols (s acc)
       (push s acc))))
 (defparameter *all-names*
-  (remove-duplicates #'string-equal *all-symbols*))
+(make-hash-table :test #'equal))
 (defparameter *histogram*
   (sort #'>
         (iter (for name in *all-names*)
@@ -958,15 +961,71 @@ swank-xref で何回参照されているかを調べる
 
 ** 結果
 
-[[img/histogram.png]]
+[[png:static/histogram]]
 
-* swank-xref で何回参照されているかを調べる : *結果*
+** 内訳
 
-* Lisp のマクロを学習できるか?
+なぜこんなに...
 
-構文木からのパターンマッチング
+#+BEGIN_CONTAINER-FLUID
+#+BEGIN_ROW-FLUID
+#+BEGIN_SPAN6
+("NAME" . 69)
+("ENSURE-LIST" . 52)
+("WITH-GENSYMS" . 49)
+("TEST/ALL" . 48)
+("WHEN-LET" . 43)
+("AIF" . 37)
+("TEST" . 36)
+("+" . 36)
+("-" . 35)
+("SIZE" . 34)
+("TIME" . 34)
+("*" . 33)
+("RUN" . 32)
+("CLOSE" . 32)
+("MESSAGE" . 30)
+("LOG" . 30)
+("LENGTH" . 30)
+#+END_SPAN6
+#+BEGIN_SPAN6
+("/" . 29)
+("EXPT" . 29)
+("=" . 29)
+("WITH-UNIQUE-NAMES" . 29)
+("OPEN" . 28)
+(">" . 28)
+("<" . 28)
+("UNION" . 28)
+("ONCE-ONLY" . 28)
+("AWHEN" . 28)
+("COS" . 27)
+("SIN" . 27)
+("SQRT" . 27)
+("TAN" . 27)
+("<=" . 27)
+("TEXT" . 27)
+("STRING" . 27)
+("MAX" . 27)
+("INTERSECTION" . 27)
+(">=" . 27)
+("FLATTEN" . 26)
+("DEFCONSTANT" . 26)
+("WRITE" . 26)
+("CLASS-NAME" . 26)
+("MAP" . 26)
+("COMPOSE" . 25)
+#+END_SPAN6
+#+END_ROW-FLUID
+#+END_CONTAINER-FLUID
 
-これは普通に難しそうなので保留します。
+# * swank-xref で何回参照されているかを調べる : *結果*
+# 
+# * Lisp のマクロを学習できるか?
+# 
+# 構文木からのパターンマッチング
+# 
+# これは普通に難しそうなので保留します。
 
 * まとめ
 
@@ -974,6 +1033,5 @@ Common Lisp のユーティリティ問題について話した。
 
 プランニングでのユーティリティ問題について話した。
 
-後者から
 
 
