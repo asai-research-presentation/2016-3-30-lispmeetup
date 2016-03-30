@@ -199,6 +199,10 @@ Common Lisp の Utility Problem
  #+END_ALIGNRIGHT
  #+END_QUOTE
 
+*一つのユーティリティ関数のために巨大なシステムをロードするのは嫌!*
+
+*複数のユーティリティ関数が複数のシステムにバラけている!*
+
 ** Common Lisp での Utility Problem との闘いの歴史
 
 + 1970s --- そもそも処理系自体が乱立状態
@@ -216,8 +220,24 @@ Common Lisp の Utility Problem
   新規性 : *個別のユーティリティを一つ一つロードできる*
   
   ☺ 誰でもすぐに追加できる
-  
-  様々な議論 @ reddit ...
+
+  様々な議論 @ reddit ... e.g. "over-engineered"
+
+  ☹ ウェブサーバからDBに登録しているようだ (あってますか深町さん?)
+
+  アイディアは良いのに、いまだ killer app にはなっていない → なぜ?
+
+* 
+
+#+BEGIN_XLARGE
+自分の研究から
+#+BEGIN_CENTER
+使える知見は
+#+END_CENTER
+#+BEGIN_ALIGNRIGHT
+ないだろうか??
+#+END_ALIGNRIGHT
+#+END_XLARGE
 
 * AI Topics -- プランニングへのイントロダクション
 ** 誰?
@@ -726,27 +746,35 @@ UCT-MCTS: Monte Carlo Tree Search + Universal Confidence Bound applied on Trees
 ** マクロの作成
 
 #+BEGIN_CENTER
-| /          | <        | >        | <> | <>                     |
-|            | <c>      | <c>      |    | <c>                    |
-| actions    | a_1      | a_2      |    | m=a_1 + a_2            |
-|------------+----------+----------+----+------------------------|
-| parameters | params_1 | params_2 |    | 　　　　　　　　　　　 |
-| 前提条件   | pre_1    | pre_2    |    |                        |
-| 追加効果   | e^+_1    | e^+_2    |    |                        |
-| 削除効果   | e^-_1    | e^-_2    |    |                        |
+| /          | <           | >           | <> | <>                     |
+|            | <c>         | <c>         |    | <c>                    |
+| actions    | a_1         | a_2         |    | m=a_1 + a_2            |
+|------------+-------------+-------------+----+------------------------|
+| parameters | params_1    | params_2    |    | 　　　　　　　　　　　 |
+|            | X,Y         | Y,Z         |    |                        |
+| 前提条件   | pre_1       | pre_2       |    |                        |
+|            | clear,clear | clear,clear |    |                        |
+| 追加効果   | e^+_1       | e^+_2       |    |                        |
+|            | on          | on          |    |                        |
+| 削除効果   | e^-_1       | e^-_2       |    |                        |
+|            | clear       | clear       |    |                        |
 #+END_CENTER
 
 *** マクロの作成
 
 #+BEGIN_CENTER
-| /          | <        | >        | <> | <>                     |
-|            | <c>      | <c>      |    | <c>                    |
-| actions    | a_1      | a_2      |    | m=a_1 + a_2            |
-|------------+----------+----------+----+------------------------|
-| parameters | params_1 | params_2 |    | params_1 \cup params_2 |
-| 前提条件   | pre_1    | pre_2    |    |                        |
-| 追加効果   | e^+_1    | e^+_2    |    |                        |
-| 削除効果   | e^-_1    | e^-_2    |    |                        |
+| /          | <           | >           | <> | <>                     |
+|            | <c>         | <c>         |    | <c>                    |
+| actions    | a_1         | a_2         |    | m=a_1 + a_2            |
+|------------+-------------+-------------+----+------------------------|
+| parameters | params_1    | params_2    |    | params_1 \cup params_2 |
+|            | X,Y         | Y,Z         |    | X,Y,Z                  |
+| 前提条件   | pre_1       | pre_2       |    |                        |
+|            | clear,clear | clear,clear |    |                        |
+| 追加効果   | e^+_1       | e^+_2       |    |                        |
+|            | on          | on          |    |                        |
+| 削除効果   | e^-_1       | e^-_2       |    |                        |
+|            | clear,clear | clear,clear |    |                        |
 #+END_CENTER
 
 #+BEGIN_ALIGNRIGHT
@@ -761,14 +789,18 @@ of the base actions.
 *** マクロの作成
 
 #+BEGIN_CENTER
-| /          | <        | >        | <> | <>                                 |
-|            | <c>      | <c>      |    | <c>                                |
-| actions    | a_1      | a_2      |    | m=a_1 + a_2                        |
-|------------+----------+----------+----+------------------------------------|
-| parameters | params_1 | params_2 |    | params_1 \cup params_2             |
-| 前提条件   | pre_1    | pre_2    |    | pre_1 \cup (pre_2 \setminus e^+_1) |
-| 追加効果   | e^+_1    | e^+_2    |    | (e^+_1 \setminus e^-_2) \cup e^+_2 |
-| 削除効果   | e^-_1    | e^-_2    |    | (e^-_1 \setminus e^+_2) \cup e^-_2 |
+| /          | <           | >           | <> | <>                                 |
+|            | <c>         | <c>         |    | <c>                                |
+| actions    | a_1         | a_2         |    | m=a_1 + a_2                        |
+|------------+-------------+-------------+----+------------------------------------|
+| parameters | params_1    | params_2    |    | params_1 \cup params_2             |
+|            | X,Y         | Y,Z         |    | X,Y,Z                              |
+| 前提条件   | pre_1       | pre_2       |    | pre_1 \cup (pre_2 \setminus e^+_1) |
+|            | clear,clear | clear,clear |    |                                    |
+| 追加効果   | e^+_1       | e^+_2       |    | (e^+_1 \setminus e^-_2) \cup e^+_2 |
+|            | on          | on          |    |                                    |
+| 削除効果   | e^-_1       | e^-_2       |    | (e^-_1 \setminus e^+_2) \cup e^-_2 |
+|            | clear,clear | clear,clear |    |                                    |
 #+END_CENTER
 
 #+BEGIN_ALIGNRIGHT
@@ -931,7 +963,7 @@ EBL Explanation-Based Learning --- 「使えるマクロ」を訓練問題から
 
 名前でソートして再実装を見つける
 
-時間的都合で出来なかった:
+時間的都合で出来なかったが、もう少したったらやりたいこと:
 
 ✘ swank-xref で何回参照されているかを調べる
 
@@ -939,37 +971,48 @@ EBL Explanation-Based Learning --- 「使えるマクロ」を訓練問題から
 
 * 名前でソートして再実装を見つける
 
+一回目, remove-duplicate が遅すぎて失敗 << シンボルが30万個ぐらいあった
+
+二回目: hashtable実装で
+
 #+BEGIN_SRC lisp
 (ql:quickload '(:iterate :eazy-gnuplot))
 (use-package '(:iterate :eazy-gnuplot))
+
 (defparameter *all-symbols*
   (let (acc)
     (do-all-symbols (s acc)
-      (push s acc))))
+      (when (fboundp s) (push s acc)))))
+
 (defparameter *all-names*
-(make-hash-table :test #'equal))
+  (make-hash-table :test #'equal))
+
 (defparameter *histogram*
-  (sort #'>
-        (iter (for name in *all-names*)
-           (collecting
-            (cons name (count name *all-symbols*))))
-        :key #'cdr))
+  (sort (hash-table-alist *all-names*) #'> :key #'cdr))
+
 (with-plots (s)
   (gp-setup :output "img/histogram.png")
   (plot (lambda () (iter (for (name . count) in *histogram*) (print count)))))
 #+END_SRC
 
+# (sort (hash-table-alist *all-names*) #'> :key #'cdr)
+# (with-open-file (*standard-output* "hist2" :direction :output :if-does-not-exist :create :if-exists :supersede) (print (sort (hash-table-alist *all-names*) #'> :key #'cdr)) nil)
+
 ** 結果
+
+ロングテール!
 
 [[png:static/histogram]]
 
 ** 内訳
 
-なぜこんなに...
+なぜこんなに... (急ぎだったのであまり細かくは見れていない)
 
 #+BEGIN_CONTAINER-FLUID
 #+BEGIN_ROW-FLUID
 #+BEGIN_SPAN6
+#+BEGIN_SMALLER
+#+BEGIN_SRC lisp
 ("NAME" . 69)
 ("ENSURE-LIST" . 52)
 ("WITH-GENSYMS" . 49)
@@ -987,8 +1030,13 @@ EBL Explanation-Based Learning --- 「使えるマクロ」を訓練問題から
 ("MESSAGE" . 30)
 ("LOG" . 30)
 ("LENGTH" . 30)
+#+END_SRC
+#+END_SMALLER
 #+END_SPAN6
+
 #+BEGIN_SPAN6
+#+BEGIN_SMALLER
+#+BEGIN_SRC lisp
 ("/" . 29)
 ("EXPT" . 29)
 ("=" . 29)
@@ -999,8 +1047,8 @@ EBL Explanation-Based Learning --- 「使えるマクロ」を訓練問題から
 ("UNION" . 28)
 ("ONCE-ONLY" . 28)
 ("AWHEN" . 28)
-("COS" . 27)
-("SIN" . 27)
+("COS" . 27)    ; wtf??
+("SIN" . 27)    ; wtf??
 ("SQRT" . 27)
 ("TAN" . 27)
 ("<=" . 27)
@@ -1015,6 +1063,8 @@ EBL Explanation-Based Learning --- 「使えるマクロ」を訓練問題から
 ("CLASS-NAME" . 26)
 ("MAP" . 26)
 ("COMPOSE" . 25)
+#+END_SRC
+#+END_SMALLER
 #+END_SPAN6
 #+END_ROW-FLUID
 #+END_CONTAINER-FLUID
@@ -1033,5 +1083,15 @@ Common Lisp のユーティリティ問題について話した。
 
 プランニングでのユーティリティ問題について話した。
 
+Quicklisp ライブラリ中のシンボルをソートして再実装を見つけた。
 
+✘ swank-xref で何回参照されているかを調べられなかった。
+
+✘ Lisp のマクロを学習できなかった。
+
+*Future work*:
+
++ 全ライブラリを読み込んで, どれだけの reputation を得ているかを調べる。
+
++ reputation によってユーティリティをランク付けし、quicklisp リリースごとに動的に更新する。
 
