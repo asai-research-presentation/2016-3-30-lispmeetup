@@ -44,14 +44,15 @@ give a brief introduction to my research field and what I do.
 
 Total 20分
 
-+ Backgrounds -- AI Topics *5分*
-  + 自動プランニングへのイントロダクション
-  + 自動プランニングの技術
 + Lisp × {マクロ, ユーティリティ, Utility Problem} *5分*
   + マクロとはどういう概念か?
   + Common Lisp のマクロ
   + Common Lisp のユーティリティ
   + Common Lisp の Utility Problem
+  + Common Lisp での Utility Problem との闘いの歴史
++ Backgrounds -- AI Topics *5分*
+  + 自動プランニングへのイントロダクション
+  + 自動プランニングの技術
 + プランニング × {マクロ, ユーティリティ, Utility Problem} *5分*
   + プランニングでのマクロ
   + プランニングでの Utility Problem
@@ -59,6 +60,165 @@ Total 20分
   + プランニングでの マクロの学習
   + Lisp マクロの学習?
   + Future Direction --- Utility Problem をどう解くのか?
+
+* Lisp × {マクロ, ユーティリティ, Utility Problem}
+
+マクロとはどういう概念か?
+
+Common Lisp のマクロ
+
+Common Lisp のユーティリティ
+
+Common Lisp の Utility Problem
+
+** マクロとは広義にはどういう概念か?
+
+ #+BEGIN_CONTAINER-FLUID
+ #+BEGIN_ROW-FLUID
+ #+BEGIN_SPAN7
+ マクロという「名称」はLispだけ? → *NO.*
+
+ #+BEGIN_ALIGNRIGHT
+ → *何らかの一般性を有する概念*
+ #+END_ALIGNRIGHT
+ #+END_SPAN7
+ #+BEGIN_SPAN5
+ | Lisp     | マクロ           |
+ | C        | マクロ           |
+ | エクセル | マクロ           |
+ | 秀丸     | マクロ           |
+ | Emacs    | キーボードマクロ |
+ #+END_SPAN5
+ #+END_ROW-FLUID
+ #+BEGIN_ROW_FLUID
+ 　
+ #+END_ROW_FLUID
+ #+BEGIN_ROW-FLUID
+ #+BEGIN_SPAN5
+ マクロ = 
+
+ *複数の命令列に展開されるもの*
+ #+END_SPAN5
+ #+BEGIN_SPAN7
+ =with-open-file= 作業X 
+
+ → =open= + =unwind-protect= + 作業X + =close=
+ #+END_SPAN7
+ #+END_ROW-FLUID
+ #+END_CONTAINER-FLUID
+
+** 様々なマクロ (おさらい)
+
+ | キーボードマクロ         | C                    | Lisp                       |
+ | (emacs, 秀丸 etc.)       | マクロ               | マクロ                     |
+ |--------------------------+----------------------+----------------------------|
+ | キーボード入力の列に展開 | 文字列に展開         | *木構造に展開*             |
+ |--------------------------+----------------------+----------------------------|
+ | 入力をパースできない     | 入力をパース出来ない | *入力をパース出来る*       |
+ |--------------------------+----------------------+----------------------------|
+ | 文字列ベース             | 文字列ベース         | *シンボルベース*           |
+ |--------------------------+----------------------+----------------------------|
+ | よく使うパターンの       | よく使うパターンの   | よく使うパターンの         |
+ | ショートカット           | ショートカット       | ショートカット             |
+ |--------------------------+----------------------+----------------------------|
+ |                          |                      | *言語となり思考を規定する* |
+ |--------------------------+----------------------+----------------------------|
+
+** Common Lisp の関数とマクロ
+
+#+BEGIN_CONTAINER-FLUID
+#+BEGIN_ROW-FLUID
+#+BEGIN_SPAN6
+ with-gensyms -- マクロ
+
+ once-only -- マクロ
+
+ ensure-list -- 関数
+
+ symbolicate -- 関数
+#+END_SPAN6
+#+BEGIN_SPAN6
+ プログラマに与える恩恵は同じ
+
+ #+BEGIN_ALIGNRIGHT
+  (*抽象化の手段*)
+ #+END_ALIGNRIGHT
+ 
+ 適用対象・状況・呼び方が異なるだけ
+
+ #+BEGIN_ALIGNRIGHT
+ *→ どちらも広義のマクロ*
+ #+END_ALIGNRIGHT
+#+END_SPAN6
+#+END_ROW-FLUID
+#+END_CONTAINER-FLUID
+
+** Common Lisp における? ユーティリティ ＃とは
+
+ #+BEGIN_QUOTE
+ --- is a *small*, *context-free*, *useful* bit of code that is
+ *self-contained*, and *doesn't warrant an entire new library*.
+
+ #+BEGIN_ALIGNRIGHT
+ /Robert Smith, Quickutil: A New Software Distribution Paradigm/
+ #+END_ALIGNRIGHT
+ #+END_QUOTE
+
+ + Small :: 1つか2つの独立した機能を持つ関数である。
+ + Self-contained :: 外部ライブラリに依存しない。
+ + Context-free :: 使い道が限定されない。
+ + Useful :: 主観的だが、とにかく「便利」
+
+** Common Lisp における Utility Problem ＃とは
+
+#+BEGIN_LARGER
+*Utility Library Problem.*
+#+END_LARGER
+
+ # [[http://blog.8arrow.org/entry/20130617/1371458729][Lispユーティリティの新しい解決案「Quickutil」]]
+
+ # [[http://web.archive.org/web/20140711172208/http://symbo1ics.com/blog/?p=1936][Quickutil: A New Software Distribution Paradigm]]
+
+ #+BEGIN_QUOTE
+ #+BEGIN_SRC
+ Common Lispプログラマなら以下のようなことを
+ 思ったことがあるのではないですかね。
+
+     Alexandriaは大きすぎる…
+ 
+     なんでAlexandriaにあの関数ないんだよ…
+
+     aandのためだけにarnesi…
+
+     split-sequence…
+
+ そんな微妙な行き違いの結果、みんな
+ オレオレユーティリティ集を作るみたいなことが発生する。
+ #+END_SRC
+ #+BEGIN_ALIGNRIGHT
+ /深町英太郎: Lispユーティリティの新しい解決案「Quickutil」/
+ #+END_ALIGNRIGHT
+ #+END_QUOTE
+
+** Common Lisp での Utility Problem との闘いの歴史
+
++ 1970s --- そもそも処理系自体が乱立状態
++ 1984 --- CLtL1
++ 1990 --- CLtL2
++ 1994 --- ANSI Common Lisp が成立、普及
++ 1991 --- /Portable utilities for Common Lisp user guide & implementation notes/
++ だれそれが作ったオレオレ・ユーティリティが乱立
++ 2002 --- cl-utilities (google で期間指定して調べるとわかる)
++ 2006 --- Alexandria (他の関数をいろいろまとめた)
++ 2013 --- QuickUtil
+  
+  既存の有名なユーティリティ関数を集めたライブラリ
+    
+  新規性 : *個別のユーティリティを一つ一つロードできる*
+  
+  ☺ 誰でもすぐに追加できる
+  
+  様々な議論 @ reddit ...
 
 * AI Topics -- プランニングへのイントロダクション
 ** 誰?
@@ -481,184 +641,43 @@ UCT-MCTS: Monte Carlo Tree Search + Universal Confidence Bound applied on Trees
 #+BEGIN_NOTE
 *1 [Helmert, 2006] [Richter, 2010]
 #+END_NOTE
-
-* Lisp × {マクロ, ユーティリティ, Utility Problem}
-
-マクロとはどういう概念か?
-
-Common Lisp のマクロ
-
-Common Lisp のユーティリティ
-
-Common Lisp の Utility Problem
-
-** マクロとは広義にはどういう概念か?
-
- #+BEGIN_CONTAINER-FLUID
- #+BEGIN_ROW-FLUID
- #+BEGIN_SPAN7
- マクロという「名称」はLispだけ? → *NO.*
-
- #+BEGIN_ALIGNRIGHT
- → *何らかの一般性を有する概念*
- #+END_ALIGNRIGHT
- #+END_SPAN7
- #+BEGIN_SPAN5
- | Lisp     | マクロ           |
- | C        | マクロ           |
- | エクセル | マクロ           |
- | 秀丸     | マクロ           |
- | Emacs    | キーボードマクロ |
- #+END_SPAN5
- #+END_ROW-FLUID
- #+BEGIN_ROW_FLUID
- 　
- #+END_ROW_FLUID
- #+BEGIN_ROW-FLUID
- #+BEGIN_SPAN5
- マクロ = 
-
- *複数の命令列に展開されるもの*
- #+END_SPAN5
- #+BEGIN_SPAN7
- =with-open-file= 作業X 
-
- → =open= + =unwind-protect= + 作業X + =close=
- #+END_SPAN7
- #+END_ROW-FLUID
- #+END_CONTAINER-FLUID
-
-** 様々なマクロ (おさらい)
-
- | キーボードマクロ         | C                    | Lisp                       |
- | (emacs, 秀丸 etc.)       | マクロ               | マクロ                     |
- |--------------------------+----------------------+----------------------------|
- | キーボード入力の列に展開 | 文字列に展開         | *木構造に展開*             |
- |--------------------------+----------------------+----------------------------|
- | 入力をパースできない     | 入力をパース出来ない | *入力をパース出来る*       |
- |--------------------------+----------------------+----------------------------|
- | 文字列ベース             | 文字列ベース         | *シンボルベース*           |
- |--------------------------+----------------------+----------------------------|
- | よく使うパターンの       | よく使うパターンの   | よく使うパターンの         |
- | ショートカット           | ショートカット       | ショートカット             |
- |--------------------------+----------------------+----------------------------|
- |                          |                      | *言語となり思考を規定する* |
- |--------------------------+----------------------+----------------------------|
-
-** Common Lisp の関数とマクロ
-
-#+BEGIN_CONTAINER-FLUID
-#+BEGIN_ROW-FLUID
-#+BEGIN_SPAN6
- with-gensyms -- マクロ
-
- once-only -- マクロ
-
- ensure-list -- 関数
-
- symbolicate -- 関数
-#+END_SPAN6
-#+BEGIN_SPAN6
- プログラマに与える恩恵は同じ
-
- #+BEGIN_ALIGNRIGHT
-  (*抽象化の手段*)
- #+END_ALIGNRIGHT
- 
- 適用対象・状況・呼び方が異なるだけ
-
- #+BEGIN_ALIGNRIGHT
- *→ どちらも広義のマクロ*
- #+END_ALIGNRIGHT
-#+END_SPAN6
-#+END_ROW-FLUID
-#+END_CONTAINER-FLUID
-
-** Common Lisp における? ユーティリティ ＃とは
-
- #+BEGIN_QUOTE
- --- is a *small*, *context-free*, *useful* bit of code that is
- *self-contained*, and *doesn't warrant an entire new library*.
-
- #+BEGIN_ALIGNRIGHT
- /Robert Smith, Quickutil: A New Software Distribution Paradigm/
- #+END_ALIGNRIGHT
- #+END_QUOTE
-
- + Small :: 1つか2つの独立した機能を持つ関数である。
- + Self-contained :: 外部ライブラリに依存しない。
- + Context-free :: 使い道が限定されない。
- + Useful :: 主観的だが、とにかく「便利」
-
-** Common Lisp における Utility Problem ＃とは
-
-#+BEGIN_LARGER
-*Utility Library Problem.*
-#+END_LARGER
-
- # [[http://blog.8arrow.org/entry/20130617/1371458729][Lispユーティリティの新しい解決案「Quickutil」]]
-
- # [[http://web.archive.org/web/20140711172208/http://symbo1ics.com/blog/?p=1936][Quickutil: A New Software Distribution Paradigm]]
-
- #+BEGIN_QUOTE
- #+BEGIN_SRC
- Common Lispプログラマなら以下のようなことを
- 思ったことがあるのではないですかね。
-
-     Alexandriaは大きすぎる…
- 
-     なんでAlexandriaにあの関数ないんだよ…
-
-     aandのためだけにarnesi…
-
-     split-sequence…
-
- そんな微妙な行き違いの結果、みんな
- オレオレユーティリティ集を作るみたいなことが発生する。
- #+END_SRC
- #+BEGIN_ALIGNRIGHT
- /深町英太郎: Lispユーティリティの新しい解決案「Quickutil」/
- #+END_ALIGNRIGHT
- #+END_QUOTE
-
-
-
+  
 * プランニング × {マクロ, ユーティリティ, Utility Problem}
 
 プランニングでのマクロ
 
 プランニングでの Utility Problem
 
-* プランニングでの マクロ: マクロ・オペレータ
+** プランニングでの マクロ: マクロ・オペレータ
 
 
-#+BEGIN_CONTAINER-FLUID
-#+BEGIN_ROW-FLUID
-#+BEGIN_SPAN6
-#+BEGIN_LARGER
-#+BEGIN_CENTER
-アクションの列を1つのアクションとして融合
+ #+BEGIN_CONTAINER-FLUID
+ #+BEGIN_ROW-FLUID
+ #+BEGIN_SPAN6
+ #+BEGIN_LARGER
+ #+BEGIN_CENTER
+ アクションの列を1つのアクションとして融合
 
-*(move a b) (move b c)*
-#+END_CENTER
+ *(move a b) (move b c)*
+ #+END_CENTER
 
-#+BEGIN_ALIGNRIGHT
-→ *(move-move a b c)*
-#+END_ALIGNRIGHT
-#+END_LARGER
-#+END_SPAN6
-#+BEGIN_SPAN6
-| ABSTRIPS | (Sacerdoti, '71)      |
-| MORRIS   | (Minton, '85)         |
-| PRODIGY  | (Minton, '89)         |
-| ...      |                       |
-| Macro-FF | (Botea et al. '05)    |
-| Wizard   | (Newton et al. '07)   |
-| Marvin   | (Coles and Smith '07) |
-| MUM      | (Chrpa et. al. '14)   |
-#+END_SPAN6
-#+END_ROW-FLUID
-#+END_CONTAINER-FLUID
+ #+BEGIN_ALIGNRIGHT
+ → *(move-move a b c)*
+ #+END_ALIGNRIGHT
+ #+END_LARGER
+ #+END_SPAN6
+ #+BEGIN_SPAN6
+ | ABSTRIPS | (Sacerdoti, '71)      |
+ | MORRIS   | (Minton, '85)         |
+ | PRODIGY  | (Minton, '89)         |
+ | ...      |                       |
+ | Macro-FF | (Botea et al. '05)    |
+ | Wizard   | (Newton et al. '07)   |
+ | Marvin   | (Coles and Smith '07) |
+ | MUM      | (Chrpa et. al. '14)   |
+ #+END_SPAN6
+ #+END_ROW-FLUID
+ #+END_CONTAINER-FLUID
 
 ** アクション = 条件付き状態遷移
 
@@ -708,27 +727,27 @@ Common Lisp の Utility Problem
 ** マクロの作成
 
 #+BEGIN_CENTER
-| /          | <          | >          | <> | <>                     |
-|            | <c>        | <c>        |    | <c>                    |
-| actions    | $a_1$      | $a_2$      |    | $m=a_1+ a_2$           |
-|------------+------------+------------+----+------------------------|
-| parameters | $params_1$ | $params_2$ |    | 　　　　　　　　　　　 |
-| 前提条件   | $pre_1$    | $pre_2$    |    |                        |
-| 追加効果   | $e^+_1$    | $e^+_2$    |    |                        |
-| 削除効果   | $e^-_1$    | $e^-_2$    |    |                        |
+| /          | <        | >        | <> | <>                     |
+|            | <c>      | <c>      |    | <c>                    |
+| actions    | a_1      | a_2      |    | m=a_1 + a_2            |
+|------------+----------+----------+----+------------------------|
+| parameters | params_1 | params_2 |    | 　　　　　　　　　　　 |
+| 前提条件   | pre_1    | pre_2    |    |                        |
+| 追加効果   | e^+_1    | e^+_2    |    |                        |
+| 削除効果   | e^-_1    | e^-_2    |    |                        |
 #+END_CENTER
 
 *** マクロの作成
 
 #+BEGIN_CENTER
-| /          | <          | >          | <> | <>                      |
-|            | <c>        | <c>        |    | <c>                     |
-| actions    | $a_1$      | $a_2$      |    | $m=a_1+ a_2$            |
-|------------+------------+------------+----+-------------------------|
-| parameters | $params_1$ | $params_2$ |    | $params_1\cup params_2$ |
-| 前提条件   | $pre_1$    | $pre_2$    |    |                         |
-| 追加効果   | $e^+_1$    | $e^+_2$    |    |                         |
-| 削除効果   | $e^-_1$    | $e^-_2$    |    |                         |
+| /          | <        | >        | <> | <>                     |
+|            | <c>      | <c>      |    | <c>                    |
+| actions    | a_1      | a_2      |    | m=a_1 + a_2            |
+|------------+----------+----------+----+------------------------|
+| parameters | params_1 | params_2 |    | params_1 \cup params_2 |
+| 前提条件   | pre_1    | pre_2    |    |                        |
+| 追加効果   | e^+_1    | e^+_2    |    |                        |
+| 削除効果   | e^-_1    | e^-_2    |    |                        |
 #+END_CENTER
 
 #+BEGIN_ALIGNRIGHT
@@ -743,18 +762,18 @@ of the base actions.
 *** マクロの作成
 
 #+BEGIN_CENTER
-| /          | <          | >          | <> | <>                                   |
-|            | <c>        | <c>        |    | <c>                                  |
-| actions    | $a_1$      | $a_2$      |    | $m=a_1+ a_2$                         |
-|------------+------------+------------+----+--------------------------------------|
-| parameters | $params_1$ | $params_2$ |    | $params_1\cup params_2$              |
-| 前提条件   | $pre_1$    | $pre_2$    |    | $pre_1 \cup (pre_2 \setminus e^+_1)$ |
-| 追加効果   | $e^+_1$    | $e^+_2$    |    | $(e^+_1 \setminus e^-_2) \cup e^+_2$ |
-| 削除効果   | $e^-_1$    | $e^-_2$    |    | $(e^-_1 \setminus e^+_2) \cup e^-_2$ |
+| /          | <        | >        | <> | <>                                 |
+|            | <c>      | <c>      |    | <c>                                |
+| actions    | a_1      | a_2      |    | m=a_1 + a_2                        |
+|------------+----------+----------+----+------------------------------------|
+| parameters | params_1 | params_2 |    | params_1 \cup params_2             |
+| 前提条件   | pre_1    | pre_2    |    | pre_1 \cup (pre_2 \setminus e^+_1) |
+| 追加効果   | e^+_1    | e^+_2    |    | (e^+_1 \setminus e^-_2) \cup e^+_2 |
+| 削除効果   | e^-_1    | e^-_2    |    | (e^-_1 \setminus e^+_2) \cup e^-_2 |
 #+END_CENTER
 
 #+BEGIN_ALIGNRIGHT
-Cancelling the intermediate effects
+打ち消し合う効果は消える
 #+END_ALIGNRIGHT
 
 #+BEGIN_RESUME
@@ -762,28 +781,199 @@ the preconditions and effects are added or subtracted
 in order to cancell and hide the intermediate effects.
 #+END_RESUME
 
+** ☺ 探索木が浅くなり高速化
 
-* マクロオペレータの学習?
+[[png:macro2/search.0]]
 
-ABSTRIPS (Sacerdoti 1974)
-PRODIGY (Minton 1988)
-EBL Explanation-Based Learning --- 
+#+BEGIN_RESUME
+The benefit of using macros is a speedup.
+this figure shows the search space of a planning problem, where the macros
+are shown in dotted lines.
+#+END_RESUME
 
-MacroFF 2005 JAIR
-Marvin 2007 JAIR
-MUM 2014
+*** ☺ 探索木が浅くなり高速化
 
+[[png:macro2/search.1]]
 
-* プランニングでの Utility Problem
+#+BEGIN_RESUME
+Thanks to the added macros, the goal can be found in 2 steps, compared to 3
+steps in the red solution, in the original domain.
+If the macro is long, it achieves a larger jump and speedup.
+#+END_RESUME
 
-Minton 1988
+** ☹ 探索木の幅が増える
 
-* Lisp におけるUtility Problem?
+[[png:macro2/search.2]]
 
+#+BEGIN_ALIGNRIGHT
+→ 無駄なマクロが沢山あると遅くなる
+#+END_ALIGNRIGHT
 
+#+BEGIN_RESUME
+However, there is also several drawbacks.
+First, macros increase the branching factor.
+In this example, at the initial state,
+the number of edges have increased from 3 to 4,
+and it may increase the memory usage.
+#+END_RESUME
 
-* Lisp のマクロを学習できる?
+** マクロオペレータの学習
+
+EBL Explanation-Based Learning --- 「使えるマクロ」を訓練問題から学習する
+
+#+BEGIN_CONTAINER-FLUID
+#+BEGIN_ROW-FLUID
+#+BEGIN_SPAN4
++ 簡単な練習問題 :: 手紙を出しなさい
+
++ 練習プラン :: 
+
+     文面を書く
+     
+     送り先住所を書く
+     
+     切手を手紙に貼る
+     
+     手紙を持つ
+     
+     ポストを探す
+     
+     ポストまで歩く
+     
+     手の中の物体を投函
+
+#+END_SPAN4
+#+BEGIN_SPAN4
++ 学習したマクロ ::
+     *マクロ1(X,Y)*:
+     
+     　XをYに貼る
+     
+     　Yを持つ
+     
+     *マクロ2(X)*:
+
+     　Xを探す
+     
+     　Xまで歩く
+#+END_SPAN4
+#+BEGIN_SPAN4
++ 難しい問題 :: 確定申告をしなさい
++ 解答例 :: 
+     領収書を集める
+     
+     ...
+     
+     マクロ1(切手,封筒)
+     
+     マクロ2(ポスト)
+     
+     ...
+     
+#+END_SPAN4
+#+END_ROW-FLUID
+#+END_CONTAINER-FLUID
+
+** プランニングにおける Utility Problem
+
+ + ゴミマクロが探索を遅くする ::
+
+      例: *手紙* を *封筒* に貼る + *封筒* を持つ --- 引数が適切でない
+
+ + 過学習がおこる ::
+
+      一見良く見えたマクロ → 特定の状況でしか使えないものだった
+
+ + 使えるマクロがどれか事前に解らない ::
+
+      例: *封筒* は練習問題には含まれないシンボル
+
+** 参考:様々なマクロフィルタリング手法がある
+
+#+BEGIN_SMALLER
++ Macro Length limit -- 長さの制限 (よく使われる)
++ MacroFF (Botea, Muller, Shaeffer 2005)
+  + Component Abstraction
+  + Occurrence points + Bonus 
++ Wizard (Neuton et. al. 2007)
+  + 遺伝的アルゴリズムでマクロを学習
++ Marvin (Coles et. al. 2004;2007)
+  + 実行時に動的にマクロを学習
++ MUM (Chrpa et. al. 2014)
+  + Outer Entanglement
++ BLOMA (Chrpa, Siddiqui 2015)
+  + Block Deordering
+#+END_SMALLER
+
+* Lisp とプランニングにおけるUtility Problem の比較
+
+*Lisp* におけるユーティリティ
+
++ ユーティリティは人が書いてくれる
+  + →機械的に自動で発見・学習するよりも簡単に見える。
+  + →一見関連が無いように見えるが...
++ Alexandria が 全然更新されない理由は?
+  + ← 知らない第三者の書いたマクロが本当に使えるのか、 *評価が難しい*
+  + ← *新機能の追加に躊躇する (保守的)*
+  + ← いつの時代も、人間の一番大きなコストは *コミュニケーションコスト*
+    + (人類 = プログラムを自動生成する分散並列探索アルゴリズム)
+  + *Gmail,SNSのような自動フィルタリング・サジェスト機能が必要*
+
+* 手法
+
+3346の QuickLisp システムを全てロードする
+#+BEGIN_ALIGNRIGHT
+#+BEGIN_SMALLER
+参考: [[http://g000001.cddddr.org/3610010400][#:g1: Quicklisp全部入りコアを作ろう]]
+#+END_SMALLER
+#+END_ALIGNRIGHT
+
+全パッケージのfbound シンボルを集める
+
+名前でソートして再実装を見つける
+
+swank-xref で何回参照されているかを調べる
+
+* 名前でソートして再実装を見つける
+
+#+BEGIN_SRC lisp
+(ql:quickload '(:iterate :eazy-gnuplot))
+(use-package :eazy-gnuplot)
+(defparameter *all-symbols*
+  (let (acc)
+    (do-all-symbols (s acc)
+      (push s acc))))
+(defparameter *all-names*
+  (remove-duplicates #'string-equal *all-symbols*))
+(defparameter *histogram*
+  (sort #'>
+        (iter (for name in *all-names*)
+           (collecting
+            (cons name (count name *all-symbols*))))
+        :key #'cdr))
+(with-plots (s)
+  (gp-setup :output "img/histogram.png")
+  (plot (lambda () (iter (for (name . count) in *histogram*) (print count)))))
+#+END_SRC
+
+** 結果
+
+[[img/histogram.png]]
+
+* swank-xref で何回参照されているかを調べる : *結果*
+
+* Lisp のマクロを学習できるか?
 
 構文木からのパターンマッチング
-ランキング
+
+これは普通に難しそうなので保留します。
+
+* まとめ
+
+Common Lisp のユーティリティ問題について話した。
+
+プランニングでのユーティリティ問題について話した。
+
+後者から
+
 
