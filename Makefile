@@ -69,7 +69,6 @@ clean:
 		*~ *.aux *.dvi *.log *.toc *.bbl \
 		*.blg *.utf8 *.elc \
 		*.fdb_latexmk __* *.fls *.mtc *.maf *.out index.html
-	-find -name ".depends" -delete
 
 allclean: clean
 	git clean -Xfd
