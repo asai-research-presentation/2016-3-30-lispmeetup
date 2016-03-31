@@ -582,7 +582,7 @@ UCT-MCTS: Monte Carlo Tree Search + Universal Confidence Bound applied on Trees
 
 * プランニング問題 (決定的,完全情報) -- Blocksworld
 
-[[file:animation/plan.svg]]
+[[png:plan]]
 
 ** アクション = 条件付き状態遷移
 
